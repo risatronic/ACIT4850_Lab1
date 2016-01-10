@@ -8,18 +8,13 @@
             table{margin-left: auto; margin-right: auto;}
             td {text-align: center; height: 3em; width: 3em; font-weight: bold; font-size: 2em;}
             button {width: 4em; height: 4em;}
-            
+
         </style>
     </head>
     <body>
         <p>Marisa's Not-So-Fancy Tic-Tac-Toe<br/></p>
 
         <?php
-        if (isset($_GET['board'])) {
-            $board = $_GET['board'];
-        } else {
-            $board = "---------";
-        }
 
         class Game {
 
@@ -100,13 +95,18 @@
 
         }
 
+        if (isset($_GET['board'])) {
+            $board = $_GET['board'];
+        } else {
+            $board = "---------";
+        }
+
         $game = new Game($board);
         $game->display();
         $game->pick_move();
 
         if ($game->winner('X')) {
             echo 'You win. Lucky guesses!';
-
         } else if ($game->winner('O')) {
             echo 'I win. Muahahahaha';
         } else {

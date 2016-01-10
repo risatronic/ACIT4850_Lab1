@@ -19,12 +19,18 @@
         }
 
         function winner($token, $position) {
+            
             for ($row = 0; $row < 3; $row++) {
                 $result = true;
                 for ($col = 0; $col < 3; $col++) {
                     if ($position[3 * $row + $col] != $token) {
                         $result = false;
                     }
+                    }
+            if ($result){
+                return $result;
+            }
+            }
                     for ($col = 0; $col < 3; $col++) {
                         $result = true;
                         for ($row = 0; $row < 3; $row++) {
@@ -48,10 +54,11 @@
                                 $result = false;
                             }
                         }
-                    } return $result;
+                        return $result;
+                    } 
                 }
-            }
-        }
+            
+        
                 ?>
     </body>
 </html>

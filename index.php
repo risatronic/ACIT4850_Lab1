@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Marisa Doig - Lab 1</title>
+        <title>Marisa Doig - Lab 1</title> 
         <style>
             body{text-align: center; font-family: arial; color: purple;}
             p {font-size: 2em; text-decoration: underline;}

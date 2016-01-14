@@ -116,7 +116,7 @@
             echo 'I win. Muahahahaha';
             $done = true;
         } else {
-            echo 'No winner yet, but you are losing.';;
+            echo 'No winner yet, but you are losing.';
         }
 
         if (implode($game->position) <> '---------'){

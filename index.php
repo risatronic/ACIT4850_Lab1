@@ -58,7 +58,7 @@
                 for ($i = 0; $i < 9; $i++) {
                     if ($this->position[$i] != 'X' && $this->position[$i] != 'O') {
                         $this->newposition = $this->position; // copy the original
-                        $this->newposition[$i] = 'O'; // this would be their move
+                        $this->newposition[$i] = 'O'; // this would be our move
                         $move = implode($this->newposition); // make a string from the board
                         $this->position = $move;
                         return;
@@ -108,8 +108,7 @@
 
         $game = new Game($board);
         $done = false;
-        $game->display();
-
+        
         if ($game->winner('X')) {
             echo 'You win. Lucky guesses!';
             $done = true;
@@ -117,9 +116,15 @@
             echo 'I win. Muahahahaha';
             $done = true;
         } else {
-            echo 'No winner yet, but you are losing.';
+            echo 'No winner yet, but you are losing.';;
+        }
+
+        if (implode($game->position) <> '---------'){
             $game->pick_move();
         }
+        $game->display();
+        
+
 
         //displays restart option when game has been won
         if ($done == true) {

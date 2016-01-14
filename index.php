@@ -8,6 +8,7 @@
             table{margin-left: auto; margin-right: auto;}
             td {text-align: center; height: 3em; width: 3em; font-weight: bold; font-size: 2em;}
             button {width: 4em; height: 4em;}
+            button.restart {width: 6em; height: 2em; font-weight: bold;}
 
         </style>
     </head>
@@ -17,8 +18,10 @@
         <?php
 
         class Game {
-
+            
+            //constructor for game with board as parameter
             function __construct($board) {
+                //split board into a char array
                 $this->position = str_split($board);
             }
 
@@ -54,7 +57,10 @@
             function pick_move() {
                 for ($i = 0; $i < 9; $i++) {
                     if ($this->position[$i] != 'X' && $this->position[$i] != 'O') {
-                        $this->position[$i] = 'O';
+                        $this->newposition = $this->position; // copy the original
+                        $this->newposition[$i] = 'O'; // this would be their move
+                        $move = implode($this->newposition); // make a string from the board
+                        $this->position = $move;
                         return;
                     }
                 }
@@ -92,9 +98,8 @@
                 // return false if game is not yet won
                 return false;
             }
-
         }
-
+        //gets board state if applicable
         if (isset($_GET['board'])) {
             $board = $_GET['board'];
         } else {
@@ -102,17 +107,24 @@
         }
 
         $game = new Game($board);
+        $done = false;
         $game->display();
-        $game->pick_move();
 
         if ($game->winner('X')) {
             echo 'You win. Lucky guesses!';
+            $done = true;
         } else if ($game->winner('O')) {
             echo 'I win. Muahahahaha';
+            $done = true;
         } else {
             echo 'No winner yet, but you are losing.';
+            $game->pick_move();
+        }
+
+        //displays restart option when game has been won
+        if ($done == true) {
+            echo '<br/><br/><a href = "/ACIT4850_Lab1/index.php"><button type="button" class="restart">Restart?</button></a>';
         }
         ?>
     </body>
-    <?php ?>
 </html>

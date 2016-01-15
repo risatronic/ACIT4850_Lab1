@@ -46,9 +46,9 @@
                 }
                 // now the hard case
                 $this->newposition = $this->position; // copy the original
-                $this->newposition[$which] = 'X'; // this would be their move
+                $this->newposition[$which] = $token; // this would be their move
                 $move = implode($this->newposition); // make a string from the board
-                $link = '/ACIT4850_Lab1/index.php/?board=' . $move; // this is what we want the link to be
+                $link = './?board=' . $move; // this is what we want the link to be
                 return '<td><a href="' . $link . '"><button type="button">&nbsp;'
                         . '</button></a></td>';
             }
